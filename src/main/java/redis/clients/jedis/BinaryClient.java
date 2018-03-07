@@ -407,6 +407,18 @@ public class BinaryClient extends Connection {
     sendCommand(SRANDMEMBER, key);
   }
 
+  public void stream(final byte[] cmd, final byte[] key, final Map<byte[], byte[]> hash) {
+    final List<byte[]> params = new ArrayList<byte[]>();
+    params.add(cmd);
+    params.add(key);
+
+    for (final Entry<byte[], byte[]> entry : hash.entrySet()) {
+      params.add(entry.getKey());
+      params.add(entry.getValue());
+    }
+    sendCommand(STREAM, params.toArray(new byte[params.size()][]));
+  }
+
   public void zadd(final byte[] key, final double score, final byte[] member) {
     sendCommand(ZADD, key, toByteArray(score), member);
   }

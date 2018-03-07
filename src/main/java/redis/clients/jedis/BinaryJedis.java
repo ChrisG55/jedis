@@ -1537,6 +1537,20 @@ public class BinaryJedis implements BasicCommands, BinaryJedisCommands, MultiKey
   }
 
   /**
+   * Streams the specified command over pub/sub.
+   * <p>
+   * @param cmd
+   * @param key
+   * @param hash
+   * @return Status code reply
+   */
+  public String stream(final byte[] cmd, final byte[] key, final Map<byte[], byte[]> hash) {
+    checkIsInMultiOrPipeline();
+    client.stream(cmd, key, hash);
+    return client.getStatusCodeReply();
+  }
+
+  /**
    * Add the specified member having the specifeid score to the sorted set stored at key. If member
    * is already a member of the sorted set the score is updated, and the element reinserted in the
    * right position to ensure sorting. If key does not exist a new sorted set with the specified

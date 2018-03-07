@@ -139,6 +139,8 @@ public interface BinaryJedisCommands {
 
   Long strlen(byte[] key);
 
+  String stream(byte[] cmd, byte[] key, Map<byte[], byte[]> hash);
+
   Long zadd(byte[] key, double score, byte[] member);
 
   Long zadd(byte[] key, double score, byte[] member, ZAddParams params);

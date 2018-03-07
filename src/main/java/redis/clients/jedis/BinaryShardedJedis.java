@@ -349,6 +349,11 @@ public class BinaryShardedJedis extends Sharded<Jedis, JedisShardInfo> implement
     return j.srandmember(key, count);
   }
 
+  public String stream(byte[] cmd, byte[] key, Map<byte[], byte[]> hash) {
+    Jedis j = getShard(key);
+    return j.stream(cmd, key, hash);
+  }
+
   public Long zadd(byte[] key, double score, byte[] member) {
     Jedis j = getShard(key);
     return j.zadd(key, score, member);
