@@ -136,6 +136,8 @@ public interface JedisCommands {
 
   Long strlen(String key);
 
+  String stream(String cmd, String key, Map<String, String> hash);
+
   Long zadd(String key, double score, String member);
 
   Long zadd(String key, double score, String member, ZAddParams params);

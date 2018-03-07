@@ -715,6 +715,16 @@ public class JedisCluster extends BinaryJedisCluster implements JedisCommands,
   }
 
   @Override
+  public String stream(final String cmd, final String key, final Map<String, String> hash) {
+    return new JedisClusterCommand<String>(connectionHandler, maxAttempts) {
+      @Override
+      public String execute(Jedis connection) {
+	return connection.stream(cmd, key, hash);
+      }
+    }.run(key);
+  }
+
+  @Override
   public Long zadd(final String key, final double score, final String member) {
     return new JedisClusterCommand<Long>(connectionHandler, maxAttempts) {
       @Override

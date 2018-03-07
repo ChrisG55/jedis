@@ -350,6 +350,14 @@ public class Client extends BinaryClient implements Commands {
     srandmember(SafeEncoder.encode(key));
   }
 
+  public void stream(final String cmd, final String key, final Map<String, String> hash) {
+    final Map<byte[], byte[]> bhash = new HashMap<byte[], byte[]>(hash.size());
+    for (final Entry<String, String> entry : hash.entrySet()) {
+      bhash.put(SafeEncoder.encode(entry.getKey()), SafeEncoder.encode(entry.getValue()));
+    }
+    stream(SafeEncoder.encode(cmd), SafeEncoder.encode(key), bhash);
+  }
+
   public void zadd(final String key, final double score, final String member) {
     zadd(SafeEncoder.encode(key), score, SafeEncoder.encode(member));
   }

@@ -151,6 +151,8 @@ public interface Commands {
 
   public void srandmember(final String key);
 
+  public void stream(final String cmd, final String key, final Map<String, String> hash);
+
   public void zadd(final String key, final double score, final String member);
 
   public void zadd(final String key, final double score, final String member,
